@@ -6,12 +6,12 @@ use Hexagon\Models\Post;
 
 class PostController
 {
-    public static function getAllPosts(): bool|string
+    public static function getAllPosts(): string
     {
         return json_encode(Post::getAllPosts(), JSON_THROW_ON_ERROR);
     }
 
-    public static function getPost($id): bool|string
+    public static function getPost($id): string
     {
         return json_encode(Post::getPost($id), JSON_THROW_ON_ERROR);
     }

@@ -10,7 +10,7 @@ class Router
 {
     public string $uri;
 
-    public function init()
+    public function init(): string
     {
         $this->uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
