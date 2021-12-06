@@ -16,12 +16,12 @@ class Router
 
         switch ($this->uri) {
             case '/':
-                return json_encode(PostController::getAllPosts(), JSON_THROW_ON_ERROR);
+                return PostController::getAllPosts();
             case '/show':
                 if ($_GET['id'] === null) {
                     throw new InvalidArgumentException();
                 }
-                return json_encode(PostController::getPost($_GET['id']), JSON_THROW_ON_ERROR);
+                return PostController::getPost($_GET['id']);
             case '/seed':
                 return Seeder::seed();
             default:
