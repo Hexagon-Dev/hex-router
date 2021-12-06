@@ -25,8 +25,27 @@ class Router
             case '/seed':
                 return Seeder::seed();
             default:
-                header('HTTP/1.1 404 Not Found');
+                $this->headerCode(404);
                 return '<html lang="en"><body><h1>Page Not Found</h1></body></html>';
+        }
+    }
+
+    public function headerCode($code): void
+    {
+        switch ($code)
+        {
+            case 404:
+                header('HTTP/1.1 404 Not Found');
+                break;
+            case 403:
+                header('HTTP/1.1 403 Forbidden');
+                break;
+            case 401:
+                header('HTTP/1.1 401 Unauthorized');
+                break;
+            case 422:
+                header('HTTP/1.1 422 Unprocessable Entity');
+                break;
         }
     }
 }
