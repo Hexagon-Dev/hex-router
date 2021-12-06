@@ -1,8 +1,0 @@
-server:
-  command: "php index.php"
-
-http:
-  address: "0.0.0.0:8080"
-  pool:
-    num_workers: 1
-    debug: true
