@@ -1,6 +1,6 @@
 <?php
 
-namespace Hexagon\Model;
+namespace Hexagon\Models;
 
 class Post extends Model
 {

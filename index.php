@@ -4,4 +4,6 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Hexagon\Routes\Router;
 
-new Router();
+$router = new Router();
+
+print_r($router->init());

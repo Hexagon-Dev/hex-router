@@ -1,16 +1,24 @@
 <?php
 
-namespace Hexagon\Model;
+namespace Hexagon\Models;
 
 use PDO;
 use PDOException;
 
 class Model {
-    public static function init()
+    public static function init(): PDO
     {
-        $config = require '../Config/Database.php';
-        $connection = 'mysql:host=' . $config['host'] . ';dbname=' . $config['database'];
-        return new PDO($connection, $config['user'], $config['password']);
+        $config = require '/config/Database.php';
+        try {
+            return new PDO(
+                "mysql:dbname={$config['database']};host={$config['host']};charset=utf8;",
+                $config['user'],
+                $config['password']
+            );
+        } catch (PDOException $exception) {
+            var_dump($config);
+            die('Ошибка подключения базы данных: ' . $exception->getMessage());
+        }
     }
 
     public static function query(string $sql, array $parameters = [])

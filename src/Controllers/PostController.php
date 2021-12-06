@@ -2,14 +2,13 @@
 
 namespace Hexagon\Controllers;
 
-use Hexagon\Model\Post;
+use Hexagon\Models\Post;
 
 class PostController
 {
     public static function getAllPosts()
     {
-        return 'all';
-        //return Post::getAllPosts();
+        return Post::getAllPosts();
     }
 
     public static function getPost($id)
