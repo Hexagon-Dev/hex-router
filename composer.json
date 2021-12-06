@@ -1,0 +1,15 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Hexagon\\": "src"
+    }
+  },
+  "require": {
+      "spiral/roadrunner": "^2.6",
+    "ext-pdo": "*",
+    "ext-http": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  }
+}
