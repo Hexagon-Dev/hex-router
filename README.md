@@ -1,4 +1,5 @@
 # hex-router
+Basic router that works simply by using switch on ``$_SERVER['REQUEST_URI']`` variable.
 ## Endpoints
 | Method | URI | Description |
 |----------------|---------|----------------|
