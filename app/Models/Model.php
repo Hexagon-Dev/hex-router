@@ -8,7 +8,7 @@ use PDOException;
 class Model {
     public static function init(): PDO
     {
-        $config = require '/config/Database.php';
+        $config = require '../config/Database.php';
         try {
             return new PDO(
                 "mysql:dbname={$config['database']};host={$config['host']};charset=utf8;",

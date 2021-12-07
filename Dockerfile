@@ -10,13 +10,13 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN mkdir /.composer && chown -R 1000:1000 /.composer
 
-RUN install-php-extensions pdo_mysql gmp gd zip exif pcntl sockets curl
+RUN install-php-extensions pdo_mysql gmp gd zip exif pcntl sockets
 
 # Setup Working Dir
-WORKDIR /
+WORKDIR /app
 
 # setup
-COPY . /
+COPY . /app
 RUN composer install --no-dev --no-interaction --ansi
 
 USER 1000:1000

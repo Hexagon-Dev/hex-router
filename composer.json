@@ -1,7 +1,7 @@
 {
   "autoload": {
     "psr-4": {
-      "Hexagon\\": "src"
+      "Hexagon\\": "app/"
     }
   },
   "require": {
