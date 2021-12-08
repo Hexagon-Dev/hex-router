@@ -13,4 +13,13 @@ class Post extends Model
     {
         return parent::query('SELECT * FROM posts WHERE id = :id', ['id' => $id]);
     }
+
+    public static function getPostTwo($id, $title)
+    {
+        return parent::query('SELECT * FROM posts WHERE id = :id AND title = :title',
+            [
+                'id' => $id,
+                'title' => $title,
+            ]);
+    }
 }
