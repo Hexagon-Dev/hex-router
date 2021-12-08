@@ -32,7 +32,7 @@ class Model {
         } catch (PDOException $exception) {
             var_dump($exception);
         }
-        return null;
+        return false;
     }
 
     public static function table($sql, $parameters = []): array
