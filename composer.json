@@ -5,12 +5,12 @@
     }
   },
   "require": {
-      "spiral/roadrunner": "^2.6",
-    "ext-pdo": "*",
-    "ext-http": "*",
-    "ext-json": "*"
+    "ext-mbstring": "*",
+    "ext-json": "*",
+    "ext-pdo": "*"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest"
+    "roave/security-advisories": "dev-latest",
+    "behat/behat": "^3.10"
   }
 }

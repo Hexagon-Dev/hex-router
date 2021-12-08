@@ -3,6 +3,7 @@
 namespace Hexagon\Routes;
 
 use Hexagon\Controllers\PostController;
+use Hexagon\Controllers\TestController;
 use Hexagon\Seeders\Seeder;
 use Throwable;
 

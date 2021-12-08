@@ -2,13 +2,15 @@
 
 namespace Hexagon\Models;
 
+use Hexagon\Config\Config;
 use PDO;
 use PDOException;
 
 class Model {
     public static function init(): PDO
     {
-        $config = require '../config/Database.php';
+        $config = new Config();
+        $config = $config->database;
         try {
             return new PDO(
                 "mysql:dbname={$config['database']};host={$config['host']};charset=utf8;",
