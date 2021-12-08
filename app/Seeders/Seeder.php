@@ -3,9 +3,13 @@
 namespace Hexagon\Seeders;
 
 use Hexagon\Models\Model;
+use Throwable;
 
 class Seeder
 {
+    /**
+     * @throws Throwable
+     */
     public static function create(): string
     {
         Model::query('
@@ -17,9 +21,12 @@ class Seeder
             );
         ');
 
-        return json_encode(['message' => 'table created']);
+        return json_encode(['message' => 'table created'], JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @throws Throwable
+     */
     public static function seed($size): string
     {
         for ($i = 1; $i <= $size; $i++) {
@@ -28,13 +35,16 @@ class Seeder
                 values  ($i, 'Test" . $i . "', 'Content" . $i . "');
             ");
         }
-        return json_encode(['message' => 'table seeded']);
+        return json_encode(['message' => 'table seeded'], JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @throws Throwable
+     */
     public static function drop(): string
     {
         Model::query('drop table router.posts;');
 
-        return json_encode(['message' => 'table dropped']);
+        return json_encode(['message' => 'table dropped'], JSON_THROW_ON_ERROR);
     }
 }

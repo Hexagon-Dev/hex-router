@@ -3,6 +3,7 @@
 namespace Hexagon\Routes;
 
 use Exception;
+use Throwable;
 
 class Router
 {
@@ -10,41 +11,52 @@ class Router
     public array $routes;
 
     /**
-     * @throws Exception
+     * @throws Throwable
      */
     public function add(string $uri, array $action): void
     {
         try {
             new $action[0];
         } catch (Exception $e) {
-            throw new Exception('Class ' . $action[0] . ' not found');
+            throw new Exception('Controller ' . $action[0] . ' not found');
         }
 
-        $uri = preg_replace('/\//', '\/', $uri);
-        $uri = '/' . preg_replace('/{(?:[^{}]|((?R)))+}/', '(.*?)', $uri) . '$/';
+        /** @var String $uri */
+        $uri = preg_replace_callback(
+                '/{[a-zA-Z]+}/',
+                static function () {
+                    return '(.*?)';
+                },
+                $uri
+            );
+
+        $uri = '#' .  $uri . '$#';
 
         $this->routes[] = new Route($uri, $action);
     }
 
     /**
-     * @throws Exception
+     * @throws Throwable
      */
     public function match($needle): string
     {
+        /** @var null|Route $matchedRoute */
+        $matchedRoute = null;
+
         foreach ($this->routes as $route) {
-            if (preg_match($route->uri, $needle)) {
-                $match = $route;
+            if (preg_match_all($route->uri, $needle, $parameters, PREG_SET_ORDER)) {
+                $matchedRoute = $route;
+                array_shift($parameters[0]);
+                $matchedRoute->parameters = $parameters[0];
             }
         }
-        // Если никакой не совпал то 404
-        if (!isset($match)) {
+
+        if (null === $matchedRoute) {
             $this->headerCode(404);
-            return '<html lang="en"><body><h1>Page Not Found</h1></body></html>';
+            return json_encode(['error' => 'page not found'], JSON_THROW_ON_ERROR);
         }
 
-        $match->addParameters($needle);
-
-        return $match->executeAction();
+        return $matchedRoute->executeAction();
     }
 
     public function headerCode($code): void
