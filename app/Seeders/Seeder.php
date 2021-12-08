@@ -6,7 +6,7 @@ use Hexagon\Models\Model;
 
 class Seeder
 {
-    public static function seed()
+    public static function create()
     {
         Model::query('
             create table posts
@@ -17,13 +17,17 @@ class Seeder
             );
         ');
 
-        Model::query("
-            insert into router.posts (id, title, content)
-            values  (1, 'Test1', 'Content1'),
-                    (2, 'Test2', 'Content2'),
-                    (3, 'Test3', 'Content3');
-        ");
+        return 'Table created';
+    }
 
-        return 'Table seeded.';
+    public static function seed($size)
+    {
+        for ($i = 1; $i <= $size; $i++) {
+            Model::query("
+                insert into router.posts (id, title, content)
+                values  ($i, 'Test" . $i . "', 'Content" . $i . "');
+            ");
+        }
+        return 'Table seeded';
     }
 }
