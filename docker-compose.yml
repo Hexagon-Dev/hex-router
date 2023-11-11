@@ -19,10 +19,9 @@ services:
     user: "1000:1000"
     container_name: app
     restart: unless-stopped
-    working_dir: /app
+    working_dir: /
     volumes:
       - ./:/app:rw
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - hex-network
   mariadb:

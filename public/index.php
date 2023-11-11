@@ -2,4 +2,9 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$apiRoutes = require '../app/Routes/Api.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+require __DIR__ . '/../src/helpers.php';
+
+$app = new \HexagonDev\Core\App();

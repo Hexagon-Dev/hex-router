@@ -2,3 +2,4 @@ rr
 vendor
 mariadb
 .idea
+.env
